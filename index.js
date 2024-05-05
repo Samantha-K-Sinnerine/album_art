@@ -18,9 +18,10 @@ function connection_handler(req, res) {
         res.writeHead(200, {"Content-Type": "text/html"}); 
         favicon.pipe(res) ;
     }
-    else if(req.url === "/images/banner.jpg") {
-        res.writeHead(200, {"Content-Type": "text/html"}); 
-        res.end("replace with image")          
+    else if(req.url === "/images/banner.png") {
+        const banner = fs.createReadStream("images/banner.png");
+        res.writeHead(200, {"Content-Type": "image/png"}); 
+        banner.pipe(res);       
     }
     else if(req.url.startsWith("/album-art/")) {
         res.writeHead(200, {"Content-Type": "text/html"}); ; 
